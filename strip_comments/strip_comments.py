@@ -1,9 +1,19 @@
 import re
 
 def strip_comments(strng, markers):
-    for marker in markers:
-        strng = re.sub(rf'{re.escape(marker)}.*', '', strng)
-    return re.sub(r'\s*$', '', strng, flags=re.MULTILINE)
+    lines = re.split('\n', strng)
+    print(lines)
+   
+    arr = []
+    for line in lines:
+        
+        for marker in markers:
+            line = re.sub(rf'{re.escape(marker)}.*', '', line)
+            
+        line = re.sub(r'^\s*$', '', line)
+        arr.append(line)
+        
+    return '\n'.join(arr)
 
 result = strip_comments('apples, pears # and bananas\ngrapes\nbananas !apples', ['#', '!'])
-print(result)
+print(result) 
