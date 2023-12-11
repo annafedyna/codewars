@@ -22,3 +22,8 @@ def solution(string,markers):
     for marker in markers:
         s_list = [item.split(marker)[0].strip() for item in s_list]
     return '\n'.join(s_list)
+
+# ONE LINE SOLUTION
+
+def solution(string,markers):
+    return string if not markers else re.sub(f" *[{re.escape(''.join(markers))}].*",'', string, re.MULTILINE)
