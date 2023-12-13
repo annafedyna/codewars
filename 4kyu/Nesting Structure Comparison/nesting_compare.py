@@ -1,13 +1,19 @@
-def same_structure_as(original,other):
-    
-    for i in range(len(original)):
-        for j in range(len(other)):
-            if type(original[i]) == type(other[j]):
-                if type(original[i]) == list:
-                    return same_structure_as(original[i],other[j])
-                else:
-                    return False
+def same_structure_as(original, other):
+    if not isinstance(original, list) or not isinstance(other, list):
+        return False
 
+    if len(original) != len(other):
+        return False
+
+    for i in range(len(original)):
+        if type(original[i]) == type(other[i]):
+            if type(original[i]) == list:
+                if not same_structure_as(original[i], other[i]):
+                    return False
+        else:
+            return False
+
+    return True
 
 
 print(same_structure_as([ 1, [ 1, 1 ] ], [ [ 2, 2 ], 2 ]))
