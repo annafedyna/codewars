@@ -1,8 +1,8 @@
 import pandas as pd
 
 def max_common(df_a, df_b):
-
-    return pd.concat([df_a,df_b]).filter(items=df_a.columns).groupby(level=0).max()
+    
+    return pd.concat([df_a, df_b]).filter(items=df_a.columns).groupby(level=0).max()
     
 
 df_a = pd.DataFrame(data=[[2.5, 2.0, 2.0], [2.0, 2.0, 2.0]], columns=list('ABC'))
