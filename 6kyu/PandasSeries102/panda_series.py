@@ -1,10 +1,8 @@
 import pandas as pd
 
 def max_common(df_a, df_b):
-    common_columns = df_a.columns.intersection(df_b.columns)
-    df_a[common_columns] = pd.DataFrame({col: df_a[col].combine(df_b[col], max) for col in common_columns})
-    
-    return df_a
+
+    return pd.concat([df_a,df_b]).filter(items=df_a.columns).groupby(level=0).max()
     
 
 df_a = pd.DataFrame(data=[[2.5, 2.0, 2.0], [2.0, 2.0, 2.0]], columns=list('ABC'))
