@@ -1,16 +1,8 @@
 import random
 
 def love_language(partner, weeks):
-        love_lang=["words", "acts", "gifts", "time", "touch"]
-        positive_response = [0]*5
-        neutral_response = [0]*5 # unnecessary
-        for i in range(7*weeks):
-            j = i%5
-            if partner.response(love_lang[j]) == 'positive':
-                positive_response[j] += 1
-            else:
-                neutral_response[j] += 1
-        return love_lang[positive_response.index(max(positive_response))]
+    love_lang=["words", "acts", "gifts", "time", "touch"]
+    return max(love_lang, key = lambda word: sum(partner.response(word) == 'positive' for i in range(weeks)))
 
 class TestPartner:
     def __init__(self, main_lang):
